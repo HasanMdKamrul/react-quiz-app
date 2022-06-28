@@ -11,14 +11,14 @@ export default function Signup() {
          <h1>Create an account</h1>
          <div className="column">
             <Illustration /> 
-            <Form className={classes.signup}>
+            <Form className={`${classes.signup}`}>
                 <TextInput icon="person" type="text" placeholder="Enter name" />
                 <TextInput icon="alternate_email" type="text" placeholder="Enter email" />
                 <TextInput icon="lock" type="password" placeholder="Enter password" />
                 <TextInput icon="lock_clock" type="password" placeholder="Confirm password" />
                 <Checkbox text = "I agree to the Terms &amp; Conditions" type="checkbox" />
                 <Button>
-                    Submit Now
+                    <span>Submit Now</span>
                 </Button>
                 <div class="info">Already have an account? <a href="login.html">Login</a> instead.</div>
             </Form>
