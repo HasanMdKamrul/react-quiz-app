@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Form from '../../components/Form';
 import Illustration from '../../components/Illustration';
 import classes from '../../styles/Login.module.css';
@@ -16,7 +17,7 @@ export default function Login() {
                 <Button>
                     <span>Submit Now</span>
                 </Button>
-                <div class="info">Don't have an account? <a href="signup.html">Signup</a> instead.</div>
+                <div class="info">Don't have an account? <Link to="/signup">Signup</Link> instead.</div>
             </Form>
         </div>
     </>
