@@ -30,8 +30,8 @@ export function AuthProvider({children}){
 
         return unsubscribe;
 
-    },[])
-    
+    },[]);
+
 
     // **Signup
     async function signup(email, password, username){
@@ -40,7 +40,7 @@ export function AuthProvider({children}){
         await createUserWithEmailAndPassword(auth, email, password);
         // ** updated the user after the create and login and attached the displayname
         await updateProfile(auth.currentUser,{
-            displayName: username
+            displayName : username,
         });
 
         const user = auth.currentUser;
@@ -65,10 +65,10 @@ export function AuthProvider({children}){
     }
 
     const value = {
+        currentUser,
         signup,
         login,
         logout,
-        currentUser
     };
     return (
         <AuthContext.Provider value={value}>

@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import "../styles/App.css";
 import { AuthProvider } from './Contexts/AuthContext';
+// import { AuthProvider } from '../components/Contexts/AuthContextNew';
 import Layout from './Layout';
 import Home from './Pages/Home';
 import Login from './Pages/Login';
@@ -22,9 +23,7 @@ function App() {
           </Routes>
         </Layout>
       </Router>
-    </AuthProvider>
-
-    
+    </AuthProvider>    
   );
 }
 

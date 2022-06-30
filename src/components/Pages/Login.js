@@ -1,9 +1,5 @@
-import { Link } from 'react-router-dom';
-import Form from '../../components/Form';
 import Illustration from '../../components/Illustration';
-import classes from '../../styles/Login.module.css';
-import Button from '../Button';
-import TextInput from '../TextInput';
+import LoginForm from '../LoginForm';
 
 
 export default function Login() {
@@ -12,14 +8,7 @@ export default function Login() {
         <h1>Login to your account</h1>
         <div className="column">
             <Illustration login />
-            <Form className={`${classes.login}`}>
-                <TextInput icon = "alternate_email" type="text" placeholder="Enter email"/>
-                <TextInput icon = "lock" type="text" placeholder="Enter password"/>
-                <Button>
-                    <span>Submit Now</span>
-                </Button>
-                <div class="info">Don't have an account? <Link to="/signup">Signup</Link> instead.</div>
-            </Form>
+            <LoginForm />
         </div>
     </>
   )
