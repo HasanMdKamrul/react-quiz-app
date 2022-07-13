@@ -1,21 +1,24 @@
-import { get, getDatabase, orderByKey, query, ref } from 'firebase/database';
+import { get, getDatabase, limitToFirst, orderByKey, query, ref, startAt } from 'firebase/database';
 import { useEffect, useState } from "react";
 
 
-export default function useVideoList() {
+export default function useVideoList(page) {
   
   const [loading,setLoading] = useState(true);
   const [error,setError] = useState(false);
   const [videos,setVideos] = useState([]);
+  const [hasMore,setHasMore] = useState(true);
 
   useEffect(()=>{
-   
+
     async function fetchVideo(){
       const db = getDatabase();
       const videosRef = ref(db,"videos");
       const videoQuery = query(
         videosRef,
-        orderByKey()
+        orderByKey(),
+        startAt("" + page),  //** page from which number of video it will start */
+        limitToFirst(8) //** Ekta page a koto gula video thakbe first theke */
       )
   
       
@@ -25,8 +28,15 @@ export default function useVideoList() {
         setLoading(true);
         const snapshot = await get(videoQuery);
 
+       
+        
         if (snapshot.exists()) {
-          setVideos((prevVideo)=> [...prevVideo,...Object.values(snapshot.val())])
+          setVideos((prevVideo)=> {
+            console.log([...prevVideo]);
+            return [...prevVideo,...Object.values(snapshot.val())];
+          })
+        } else{
+          setHasMore(false);
         }
   
       } catch (error) {
@@ -36,11 +46,12 @@ export default function useVideoList() {
 
     fetchVideo();
 
-  },[]);
+  },[page]);
 
   return{
     loading,
     error,
-    videos
+    videos,
+    hasMore,
   }
 }
